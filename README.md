@@ -34,7 +34,7 @@ Ejecutar el proyecto en modo dev <br>
 Abrir en su navegador
 ```http://localhost:3000/api-inmuebles```
 
-Te aparecerá una ventana de swagger con todos los endpoints
-Deberas crear un usuario
-despues hacer login con el usuario creado
+Te aparecerá una ventana de swagger con todos los endpoints <br>
+Deberas crear un usuario <br>
+despues hacer login con el usuario creado <br>
 El token que genere el login introducirlo en el candado de cualquier endpoint para que puedas acceder a los demas
