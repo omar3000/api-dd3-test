@@ -35,3 +35,6 @@ Abrir en su navegador
 ```http://localhost:3000/api-inmuebles```
 
 Te aparecerá una ventana de swagger con todos los endpoints
+Deberas crear un usuario
+despues hacer login con el usuario creado
+El token que genere el login introducirlo en el candado de cualquier endpoint para que puedas acceder a los demas
