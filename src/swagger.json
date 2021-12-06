@@ -1,0 +1,656 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "API documentation DD3 test",
+    "description": "API in NodeJs using TypeScript"
+  },
+  "components":{
+    "securitySchemes": {
+      "ApiKeyAuth":{
+        "type": "apiKey",
+        "in": "header",
+        "name": "authorization"
+      }
+    }
+  },
+    
+
+  "host": "localhost:3000",
+  "basePath": "",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "Api Propietarios del sistema"
+    },
+    {
+      "name": "Propiedades",
+      "description": "Api para propiedades del sistema"
+    }
+  ],
+  "paths": {
+    "/users/getAllUsers": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+
+        "summary": "obtiene todos los propietarios de la bd",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        }
+      }
+    },
+    "/users/crear": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Agregar propietario a la bd",
+        "requestBody":{
+          "required": "true",
+          "content":{
+            "application/json":{
+
+              "schema": {
+                "$ref": "#/definitions/user"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          }
+        }
+      }
+    },
+    "/users/updateUser/{id}": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "actualiza un propietario",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "es necesario para este filtro",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody":{
+          "required": "true",
+          "content":{
+            "application/json":{
+
+              "schema": {
+                "$ref": "#/definitions/user"
+              }
+            }
+          }
+        },
+        
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/propiedadUpdate"
+            }
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          }
+        }
+      }
+    }, 
+    "/users/logIn": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+
+        "requestBody":{
+          "required": "true",
+          "content":{
+            "application/json":{
+
+              "schema": {
+                "$ref": "#/definitions/user"
+              }
+            }
+          }
+        },
+                
+        "summary": "LogIn propietario en la api",
+
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          }
+        }
+      }
+    },
+    "/users/deleteUser/{id}":{
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "es necesario para este filtro",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Eliminar propietario en el sistema",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        }
+      }
+    },
+    "/propiedades/getAllPropiedades": {
+      "get": {
+        "tags": [
+          "Propiedades"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Obtiene todas las propiedades de la bd",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        }
+      }
+    },
+    "/propiedades/misPropiedades": {
+      "get": {
+        "tags": [
+          "Propiedades"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Obtiene las propiedades del usuario actual en el sistema",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        }
+      }
+    },
+    "/propiedades/addPropiedad": {
+      "post": {
+        "tags": [
+          "Propiedades"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Agrega una propiedad a la DB",
+        "requestBody":{
+          "required": "true",
+          "content":{
+            "application/json":{
+
+              "schema": {
+                "$ref": "#/definitions/propiedadAdd"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/propiedadAdd"
+            }
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          }
+        }
+      }
+    }, 
+    "/propiedades/updatePropiedad/{id}": {
+      "put": {
+        "tags": [
+          "Propiedades"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "actualiza una propiedad",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "es necesario para este filtro",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody":{
+          "required": "true",
+          "content":{
+            "application/json":{
+
+              "schema": {
+                "$ref": "#/definitions/propiedadAdd"
+              }
+            }
+          }
+        },
+        
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/propiedadUpdate"
+            }
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          }
+        }
+      }
+    }, 
+    "/propiedades/deletePropiedad/{id}":{
+      "delete": {
+        "tags": [
+          "Propiedades"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "es necesario para este filtro",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Eliminar propiedad en la bd",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        }
+      }
+    },
+    "/propiedades/filtro/habitaciones/{numeroHabitaciones}":{
+      "get": {
+        "tags": [
+          "Propiedades"
+        ],
+        "parameters": [
+          {
+            "name": "numeroHabitaciones",
+            "in": "path",
+            "description": "es necesario para este filtro",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Obtiene las propiedades con un cierto numero de habitaciones",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        }
+      }
+    },
+    "/propiedades/filtro/estacionamientos/{numeroEstacionamientos}":{
+      "get": {
+        "tags": [
+          "Propiedades"
+        ],
+        "parameters": [
+          {
+            "name": "numeroEstacionamientos",
+            "in": "path",
+            "description": "es necesario para este filtro",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Obtiene las propiedades con un cierto numero de estacionamientos",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        }
+      }
+    },
+    "/propiedades/filtro/banios/{numeroBanios}":{
+      "get": {
+        "tags": [
+          "Propiedades"
+        ],
+        "parameters": [
+          {
+            "name": "numeroBanios",
+            "in": "path",
+            "description": "es necesario para este filtro",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Obtiene las propiedades con un cierto numero de bañoa",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        }
+      }
+    },
+    "/propiedades/filtro/metros/{metrosCuadrados}":{
+      "get": {
+        "tags": [
+          "Propiedades"
+        ],
+        "parameters": [
+          {
+            "name": "metrosCuadrados",
+            "in": "path",
+            "description": "es necesario para este filtro",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Obtiene las propiedades con un cierto numero de metros cuadrados",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        }
+      }
+    },
+    "/propiedades/filtro/tipo/{renta}":{
+      "get": {
+        "tags": [
+          "Propiedades"
+        ],
+        "parameters": [
+          {
+            "name": "renta",
+            "in": "path",
+            "description": "es necesario para este filtro",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Obtiene las propiedades en renta o venta",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        }
+      }
+    },
+    "/propiedades/filtro/rango/{precioMin}/{precioMax}":{
+      "get": {
+        "tags": [
+          "Propiedades"
+        ],
+        "parameters": [
+          {
+            "name": "precioMin",
+            "in": "path",
+            "description": "es necesario para este filtro",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "precioMax",
+            "in": "path",
+            "description": "es necesario para este filtro",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Obtiene las propiedades con un rango de precios",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        }
+      }
+    },
+    "/propiedades/filtro/propietario/{idPropietario}":{
+      "get": {
+        "tags": [
+          "Propiedades"
+        ],
+        "parameters": [
+          {
+            "name": "idPropietario",
+            "in": "path",
+            "description": "es necesario para este filtro",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Obtiene las propiedades con un cierto id de peopietario",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "id": {
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "email": {
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "user": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "propiedadAdd": {
+      "type": "object",
+      "properties": {
+        "renta": {
+          "type": "boolean"
+        },
+        "numeroHabitaciones": {
+          "type": "integer"
+        },
+        "numeroEstacionamientos": {
+          "type": "integer"
+        },
+        "numeroBanios": {
+          "type": "integer"
+        },
+        "precio": {
+          "type": "number"
+        },
+        "metrosCuadrados": {
+          "type": "number"
+        }
+      }
+    }
+  }
+}
