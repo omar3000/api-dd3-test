@@ -1,5 +1,9 @@
 # test-api
- 
+
+Api desarrollada con ts, nodejs, express, jwt, postgresql,swagger,sequelize <br>
+
+Instrucciones para ejecutar el proyecto: <br>
+
 Pegar el archivo ```.env ``` dentro de la carpeta ```src``` <br>
 Si desea utilizar una bd local cambiar la información del archivo <br>
 
